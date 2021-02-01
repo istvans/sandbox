@@ -1,0 +1,21 @@
+[package]
+name = "sandbox"
+version = "0.1.0"
+authors = ["István Siroki <stevesiroki@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+test01 = []
+
+[dependencies]
+rand = "0.8.2"
+
+[[bin]]
+name = "short_examples"
+path = "src/short_examples.rs"
+
+[[bin]]
+name = "lazy_evaluation"
+path = "src/lazy_evaluation.rs"
