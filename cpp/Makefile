@@ -1,5 +1,5 @@
 NAME ?= tag
-TOOL ?= gcc
+TOOL ?= clang
 RUN_ARGS ?=
 
 BINARY = ${NAME}.exe
