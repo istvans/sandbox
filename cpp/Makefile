@@ -10,7 +10,8 @@ MAKEFILE_DIR := $(dir $(MAKEFILE_PATH))
 BIN_PATH := ${MAKEFILE_DIR}/${BINARY}
 
 ifeq (${TOOL}, clang)
-    COMPILER = clang++ -std=c++14 -Weverything -Werror -Wno-c++98-compat ${TOOL_FLAGS}
+    COMPILER = clang++ -std=c++14 -Weverything -Werror -Wno-c++98-compat -Wno-overlength-strings \
+    ${TOOL_FLAGS}
     BUILD = ${COMPILER} ${SOURCE} -o ${BINARY}
 else ifeq (${TOOL}, gcc)
     COMPILER = g++ -std=c++14 -pedantic -Wall -Wextra -Wcast-align -Wcast-qual -Wctor-dtor-privacy \
