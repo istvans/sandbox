@@ -8,24 +8,22 @@
 using namespace std;
 
 
-// brute force: O{n^3) => 970045300 ns
+// O{n} => 30800 ns
 class Solution {
 public:
     int maxAbsoluteSum(vector<int>& nums)
     {
-        auto max_abs = 0;
-        auto len = nums.size();
-        for (size_t i = 0; i < len; ++i) {
-            for (size_t j = i; j < len; ++j) {
-                auto sum = 0;
-                for (size_t k = i; k <= j; ++k){
-                    sum += nums[k];
-                }
-                const auto abs_sum = std::abs(sum);
-                max_abs = std::max(max_abs, abs_sum);
-            }
+        const size_t n = nums.size();
+        auto max_sum = nums[0];
+        auto min_sum = nums[0];
+        auto result = abs(nums[0]);
+        for(size_t i = 1; i < n; ++i) {
+            max_sum = std::max(nums[i], nums[i] + max_sum);
+            min_sum = std::min(nums[i], nums[i] + min_sum);
+            result = std::max(result, std::abs(max_sum));
+            result = std::max(result, std::abs(min_sum));
         }
-        return max_abs;
+        return result;
     }
 };
 
