@@ -13,17 +13,25 @@ class Solution {
 public:
     int maxAbsoluteSum(vector<int>& nums)
     {
-        const size_t n = nums.size();
-        auto max_sum = nums[0];
-        auto min_sum = nums[0];
-        auto result = abs(nums[0]);
-        for(size_t i = 1; i < n; ++i) {
-            max_sum = std::max(nums[i], nums[i] + max_sum);
-            min_sum = std::min(nums[i], nums[i] + min_sum);
-            result = std::max(result, std::abs(max_sum));
-            result = std::max(result, std::abs(min_sum));
+        if (nums.empty())
+        {
+            return 0;
         }
-        return result;
+        else
+        {
+            const size_t n = nums.size();
+            auto max_sum = nums[0];
+            auto min_sum = nums[0];
+            auto result = abs(nums[0]);
+            for (size_t i = 1; i < n; ++i)
+            {
+                max_sum = std::max(nums[i], nums[i] + max_sum);
+                min_sum = std::min(nums[i], nums[i] + min_sum);
+                result = std::max(result, std::abs(max_sum));
+                result = std::max(result, std::abs(min_sum));
+            }
+            return result;
+        }
     }
 };
 
