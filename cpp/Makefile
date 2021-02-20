@@ -1,10 +1,13 @@
-NAME ?= tag
+ifndef TARGET
+    $(error the TARGET is undefined)
+endif
+
 TOOL ?= clang
 TOOL_FLAGS ?=
 RUN_ARGS ?=
 
-BINARY = ${NAME}.exe
-SOURCE = ${NAME}.cpp
+BINARY = ${TARGET}.exe
+SOURCE = ${TARGET}.cpp
 MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 MAKEFILE_DIR := $(dir $(MAKEFILE_PATH))
 BIN_PATH := ${MAKEFILE_DIR}/${BINARY}
