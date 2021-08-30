@@ -2,14 +2,16 @@
 #include <iomanip>
 #include <iostream>
 #include <iterator>
+#include <map>
 #include <set>
 #include <sstream>
 #include <string>
 #include <tuple>
+#include <unordered_map>
 #include <utility>
 #include <vector>
 
-#define TEST_CASE() 2
+#define TEST_CASE() 4
 
 #if TEST_CASE() == 1
 template <class T>
@@ -30,10 +32,9 @@ static void test()
     const auto dont_change = std::string{"korte"};
     foo(dont_change);
 }
-#endif
+#endif  // TEST_CASE() == 1
 
 #if TEST_CASE() == 2
-
 struct Date
 {
     int day;
@@ -105,8 +106,58 @@ static void test()
     std::cout << get_third_latest_date(std::vector<Date>{"14-04-2001", "29-12-2061", "21-10-2019", "07-01-1973",
         "19-07-2014", "11-03-1992", "21-10-2019"}) << '\n';
 }
-#endif
+#endif  // TEST_CASE() == 2
 
+#if TEST_CASE() == 3
+
+/*
+ * Complete the 'longestEvenWord' function below.
+ *
+ * The function is expected to return a STRING.
+ * The function accepts STRING sentence as parameter.
+ */
+using namespace std;
+static string longestEvenWord(string sentence) {
+    auto stream = std::istringstream(sentence);
+
+    string word;
+    auto even_word_counts = multimap<int, std::string>{};
+    for (; getline(stream, word, ' ');) {
+        if (word.size() % 2 == 0) {
+            even_word_counts.emplace(word.size(), word);
+        }
+    }
+    for (auto i: even_word_counts) {
+        std::cout << i.first << " -> " << i.second << '\n';
+    }
+    if (even_word_counts.empty()) {
+        return "00";
+    } else {
+        auto it = prev(even_word_counts.end());
+        return even_word_counts.find(it->first)->second;
+    }
+}
+
+static void test()
+{
+    std::cout << longestEvenWord("Time to write great code") << '\n';
+}
+#endif  // TEST_CASE() == 3
+
+
+#if TEST_CASE() == 4
+static void test()
+{
+    auto number = 649578;
+    while(number != 0)
+    {
+       int current = number % 10; // get rightmost digit
+       number /= 10;
+       // process 'current', or store in a container for later processing
+       std::cout << current << '\n';
+    }
+}
+#endif  // TEST_CASE() == 4
 
 int main()
 {
